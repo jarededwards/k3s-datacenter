@@ -1,0 +1,28 @@
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: colony
+#   namespace: tink-system
+#   annotations:
+#     argocd.argoproj.io/sync-wave: '20'
+#   finalizers:
+#     - resources-finalizer.argocd.argoproj.io
+# spec:
+#   project: default
+#   source:
+#     repoURL: https://github.com/jarededwards/k3s-datacenter.git
+#     path: registry/laptop/colony
+#     helm:
+#       releaseName: external-dns
+#       values: |
+#         image:
+#     targetRevision: HEAD
+#   destination:
+#     name: in-cluster
+#     namespace: tink-system
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#       - CreateNamespace=true
