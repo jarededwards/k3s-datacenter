@@ -13,7 +13,7 @@ spec:
     name: in-cluster 
     namespace: tink-system
   source:
-    chart: tink-stack
+    chart: stack
     repoURL: ghcr.io/tinkerbell/charts/stack
     targetRevision: 0.4.4
     helm:
