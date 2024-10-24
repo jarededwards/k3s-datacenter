@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: tink-stack
-  namespace: tink-system
+  namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: '10'
   finalizers:
@@ -15,7 +15,7 @@ spec:
     targetRevision: HEAD
   destination:
     name: in-cluster
-    namespace: argocd
+    namespace: tink-system
   syncPolicy:
     automated:
       prune: true

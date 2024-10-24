@@ -2,7 +2,7 @@
 # kind: Application
 # metadata:
 #   name: colony
-#   namespace: tink-system
+#   namespace: argocd
 #   annotations:
 #     argocd.argoproj.io/sync-wave: '20'
 #   finalizers:
