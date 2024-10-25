@@ -40,8 +40,8 @@ spec:
           relay:
             sourceInterface: enp3s0
   syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+    # automated:
+    #   prune: true
+    #   selfHeal: true
     syncOptions:
       - CreateNamespace=true
