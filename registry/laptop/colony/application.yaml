@@ -1,47 +1,36 @@
-# apiVersion: argoproj.io/v1alpha1
-# kind: Application
-# metadata:
-#   name: tink-stack
-#   namespace: tink-system
-#   finalizers:
-#     - resources-finalizer.argocd.argoproj.io
-#   annotations:
-#     argocd.argoproj.io/sync-wave: "10"
-# spec:
-#   project: default
-#   destination:
-#     name: in-cluster 
-#     namespace: tink-system
-#   source:
-#     chart: tink-stack
-#     repoURL: oci://ghcr.io/tinkerbell/charts/stack
-#     targetRevision: 0.4.4
-#     helm:
-#       releaseName: tink-stack
-#       values: |
-#         global:
-#           # publicIP is used to set what both smee.publicIP and stack.loadBalancerIP do individually.
-#           publicIP: 10.90.14.2
-#         hegel:
-#           trustedProxies:
-#           - 10.42.0.0/24
-#         smee:
-#           image: public.ecr.aws/kubefirst/smee:9371956
-#           trustedProxies:
-#           - 10.42.0.0/24
-#           tftp:
-#             timeout: 120s
-#           additionalArgs:
-#             - -dhcp-auto-discovery=true
-#             - -dhcp-mode=proxy
-#         stack:
-#           kubevip:
-#             interface: enp3s0
-#           relay:
-#             sourceInterface: enp3s0
-#   syncPolicy:
-#     automated:
-#       prune: true
-#       selfHeal: true
-#     syncOptions:
-#       - CreateNamespace=true
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: colony
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+spec:
+  project: default
+  destination:
+    name: in-cluster 
+    namespace: tink-system
+  source:
+    chart: colony
+    repoURL: https://charts.konstruct.io
+    targetRevision: 0.1.0
+    helm:
+      releaseName: colony
+      values: |
+        colony-agent:
+          extraEnv:
+            COLONY_API_URL: https://colony-api-virtual.konstruct.io
+            LOAD_BALANCER: 10.90.14.2
+            TALOS_URL_FILES_SOURCE: http://10.90.14.2:8080
+          extraEnvSecrets:
+            API_TOKEN:
+              key: api-key
+              name: colony-api
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
