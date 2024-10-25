@@ -19,13 +19,15 @@ spec:
     helm:
       releaseName: tink-stack
       values: |
-        global:
-          # publicIP is used to set what both smee.publicIP and stack.loadBalancerIP do individually.
-          publicIP: 10.90.14.2
+        # 0.5.0 required for global.
+        # global:
+        #   # publicIP is used to set what both smee.publicIP and stack.loadBalancerIP do individually.
+        #   publicIP: 10.90.14.2
         hegel:
           trustedProxies:
           - 10.42.0.0/24
         smee:
+          publicIP: 10.90.14.2
           image: public.ecr.aws/kubefirst/smee:9371956
           trustedProxies:
           - 10.42.0.0/24
@@ -35,6 +37,7 @@ spec:
             - -dhcp-auto-discovery=true
             - -dhcp-mode=proxy
         stack:
+          loadBalancerIP: 10.90.14.2
           kubevip:
             interface: enp3s0
           relay:
