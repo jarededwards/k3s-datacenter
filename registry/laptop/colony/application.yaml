@@ -29,8 +29,8 @@ spec:
               key: api-key
               name: colony-api
   syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+    # automated:
+    #   prune: true
+    #   selfHeal: true
     syncOptions:
       - CreateNamespace=true

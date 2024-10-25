@@ -17,8 +17,8 @@ spec:
     name: in-cluster
     namespace: tink-system
   syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+    # automated:
+    #   prune: true
+    #   selfHeal: true
     syncOptions:
       - CreateNamespace=true
