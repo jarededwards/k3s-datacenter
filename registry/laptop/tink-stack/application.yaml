@@ -14,7 +14,7 @@ spec:
     namespace: tink-system
   source:
     chart: stack
-    repoURL: ghcr.io/tinkerbell/charts/stack
+    repoURL: ghcr.io/tinkerbell/charts
     targetRevision: 0.4.4
     helm:
       releaseName: tink-stack
