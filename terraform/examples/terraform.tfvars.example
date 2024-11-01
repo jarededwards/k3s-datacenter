@@ -1,0 +1,21 @@
+virtual_environment_endpoint  = "https://pve01.konstruct.home.arpa"
+virtual_environment_api_token = "tofu@pam!kubefirst=random"
+virtual_environment_node_name = "pve-01-test"
+cluster_name                  = "Kubefirst"
+talos_version                 = "v1.8.1"
+tags                          = ["kubefirst", "talos"]
+image_store                   = "local"
+data_store                    = "local-lvm"
+controlplane_node_count       = 3
+controlplane_cpu_cores        = 2
+controlplane_memory           = 2
+controlplane_disk_size        = 20
+ipv4_address = {
+  method  = "static"
+  address = "10.0.2.10/22"
+  gateway = "10.0.0.1"
+}
+dns = {
+  domain       = "kubefirst.konstruct.home.arpa"
+  name_servers = ["dns-01.konstruct.home.arpa", "dns-02.konstruct.home.arpa"]
+}
