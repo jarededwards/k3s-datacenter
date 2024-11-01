@@ -1,0 +1,19 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: colony
+  namespace: tink-system
+spec:
+  repo: https://charts.konstruct.io
+  chart: colony
+  targetNamespace: tink-system
+  valuesContent: |-
+    colony-agent:
+      extraEnv:
+        COLONY_API_URL: https://colony-api-virtual.konstruct.io
+        LOAD_BALANCER: 10.90.14.2
+        TALOS_URL_FILES_SOURCE: http://10.90.14.2:8080
+      extraEnvSecrets:
+        API_TOKEN:
+          key: api-key
+          name: colony-api
