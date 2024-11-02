@@ -29,7 +29,7 @@ metadata:
   name: tink-stack
   namespace: tink-system
 spec:
-  repo: oci://ghcr.io/tinkerbell/charts/stack
+  chart: oci://ghcr.io/tinkerbell/charts/stack
   targetNamespace: tink-system
   version: 0.4.4
   valuesContent: |-
