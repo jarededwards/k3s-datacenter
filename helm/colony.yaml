@@ -16,8 +16,8 @@ spec:
     colony-agent:
       extraEnv:
         COLONY_API_URL: https://colony-api-virtual.konstruct.io
-        LOAD_BALANCER: 192.168.0.118
-        TALOS_URL_FILES_SOURCE: http://192.168.0.118:8080
+        LOAD_BALANCER: <LOAD_BALANCER_PUBLIC_IP>
+        TALOS_URL_FILES_SOURCE: http://<LOAD_BALANCER_PUBLIC_IP>:8080
       extraEnvSecrets:
         API_TOKEN:
           key: api-key
@@ -36,12 +36,12 @@ spec:
     # 0.5.0 required for global.
     # global:
     #   # publicIP is used to set what both smee.publicIP and stack.loadBalancerIP do individually.
-    #   publicIP: 192.168.0.118
+    #   publicIP: <LOAD_BALANCER_PUBLIC_IP>
     hegel:
       trustedProxies:
       - 10.42.0.0/24
     smee:
-      publicIP: 192.168.0.118
+      publicIP: <LOAD_BALANCER_PUBLIC_IP>
       image: public.ecr.aws/kubefirst/smee:9371956
       trustedProxies:
       - 10.42.0.0/24
@@ -51,11 +51,11 @@ spec:
         - -dhcp-auto-discovery=true
         - -dhcp-mode=proxy
     stack:
-      loadBalancerIP: 192.168.0.118
+      loadBalancerIP: <LOAD_BALANCER_PUBLIC_IP>
       kubevip:
-        interface: eth0
+        interface: <LOAD_BALANCER_INTERFACE>
       relay:
-        sourceInterface: enp3s0
+        sourceInterface: <LOAD_BALANCER_INTERFACE>
 ---
 apiVersion: v1
 kind: ConfigMap
