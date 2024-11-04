@@ -71,7 +71,7 @@ spec:
             timeout: 9600
             environment:
               DEST_DISK: {{ .disk }}
-              IMG_URL: "http://10.0.10.2:8080/jammy-server-cloudimg-amd64.raw.gz"
+              IMG_URL: "http://{{ .artifact_server_ip_port }}/jammy-server-cloudimg-amd64.raw.gz"
               COMPRESSED: true
           - name: "grow-partition"
             image: quay.io/tinkerbell-actions/cexec:v1.0.0
@@ -173,7 +173,7 @@ spec:
             timeout: 600
             environment:
               DEST_DISK: {{ .disk }}
-              IMG_URL: "http://10.0.10.2:8080/jammy-server-cloudimg-amd64.raw.gz"
+              IMG_URL: "http://{{ .artifact_server_ip_port }}/jammy-server-cloudimg-amd64.raw.gz"
               COMPRESSED: true
           - name: "grow-partition"
             image: quay.io/tinkerbell-actions/cexec:v1.0.0
