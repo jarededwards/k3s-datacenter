@@ -68,21 +68,36 @@ spec:
               CHROOT: y
               DEFAULT_INTERPRETER: "/bin/sh -c"
               CMD_LINE: "systemctl disable apparmor; systemctl disable snapd"
-          - name: "write-netplan"
+          - name: "disable-network-config"
+              image: quay.io/tinkerbell-actions/writefile:v1.0.0
+              timeout: 90
+              environment:
+                DEST_DISK: {{ .disk }}{{.block_partition}}
+                FS_TYPE: ext4
+                DEST_PATH: /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg
+                CONTENTS: |
+                  network:
+                    config: disabled
+                UID: 0
+                GID: 0
+                MODE: 0644
+                DIRMODE: 0755          
+          
+          - name: "static-ip"
             image: quay.io/tinkerbell-actions/writefile:v1.0.0
             timeout: 90
             environment:
               DEST_DISK: {{ .disk }}{{.block_partition}}
               FS_TYPE: ext4
-              DEST_PATH: /etc/netplan/config.yaml
+              DEST_PATH: /etc/netplan/100-static-ip.yaml
               CONTENTS: |
                 network:
                   version: 2
                   renderer: networkd
                   ethernets:
-                    ens18:
+                    id0:
                       match:
-                        name: en*
+                        macaddress: "{{ .device_1 }}"
                       dhcp4: false
                       addresses:
                         - {{ .static_ip }}
