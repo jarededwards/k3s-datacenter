@@ -126,7 +126,7 @@ data:
     #!/usr/bin/env bash
     # This script is designed to download specific Talos files required for an IPXE script to work.
     set -euxo pipefail
-    sleep 15
+    sleep 10
     if ! which wget &>/dev/null; then
       apk add --update wget
     fi
