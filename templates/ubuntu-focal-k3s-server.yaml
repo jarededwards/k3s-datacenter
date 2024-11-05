@@ -123,9 +123,7 @@ spec:
                     curl -L -o colony-scout.tar.gz https://objectstore.nyc1.civo.com/konstruct-assets/colony-scout/v0.0.10-rc12/colony-scout_0.0.10-rc12_Linux_x86_64.tar.gz
                     tar -xzvf colony-scout.tar.gz
                     chmod +x colony-scout
-    
                     K3S_TOKEN=$(cat /var/lib/rancher/k3s/server/node-token)
-    
                     output=$(./colony-scout report --validate=k8s,cloud-init \
                       --type=server \
                       --token={{ .colony_token }} \
@@ -136,9 +134,7 @@ spec:
                       --host-ip-port={{ .static_ip }}:6443 \
                       --kubeconfig=/etc/rancher/k3s/k3s.yaml \
                       --k3s-token=$K3S_TOKEN 2>&1)
-                    
                     echo "Colony scout output: $output"
-                    
               UID: 0
               GID: 0
               MODE: 0644
