@@ -80,7 +80,7 @@ spec:
                   version: 2
                   renderer: networkd
                   ethernets:
-                    id0:
+                    ens18:
                       match:
                         name: en*
                       dhcp4: false
