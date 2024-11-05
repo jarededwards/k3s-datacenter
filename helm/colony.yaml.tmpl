@@ -61,6 +61,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: download-image
+  namespace: tink-system
 data:
   entrypoint.sh: |-
     #!/usr/bin/env bash
@@ -85,6 +86,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: download-ubuntu-jammy
+  namespace: tink-system
 spec:
   template:
     spec:
@@ -117,6 +119,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: download-talos-files
+  namespace: tink-system
 data:
   entrypoint.sh: |-
     #!/usr/bin/env bash
@@ -136,6 +139,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: download-talos-files
+  namespace: tink-system
 spec:
   template:
     spec:
